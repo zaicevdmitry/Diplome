@@ -1,0 +1,12 @@
+body
+{
+    background-image:url('test_big.jpg');
+    background-size:800px 800px;
+    background-color:#cccccc;
+    background-repeat: no-repeat;
+}
+
+#myCanvas   {
+    width:800px;
+    height:  800px;
+}

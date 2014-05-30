@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/resources/main.css"/>
+
+
+    <script type="text/javascript" src="/resources/paper.js"></script>
+    <script type="text/javascript" src="/resources/jquery-1.9.1.js"></script>
+
+
+</head>
+<body>
+
+<script type="text/javascript" canvas="myCanvas">
+    function device(id, point) {
+        this.id = id;
+        this.point = point;
+    }
+    var devices = {};
+    var deviceIdToCircle = {};
+    var frameSkipper = 0;
+    paper.install(window);
+    window.onload = function () {
+
+        paper.setup('myCanvas');
+
+        view.onFrame = function (event) {
+            if(frameSkipper === 30) {
+                setTimeout(getData(), 1000);
+                var ids = Object.keys(devices);
+                if (ids.length != 0) {
+                    for (var i = 0; i < ids.length; i++) {
+                        var device = devices[ids[i]];
+                        var deviceId = devices[ids[i]].id;
+                        var circle = deviceIdToCircle[deviceId];
+                        if (deviceIdToCircle[deviceId] == undefined) {
+                            deviceIdToCircle[deviceId] = new Path.Circle({
+                                center: view.center,
+                                radius: 30,
+                                fillColor: 'blue'
+                            });
+                            console.log("Device " + deviceId + " created.");
+                        } else {
+                            if(device.x < 0 ) device.x = 0;
+                            if(device.y < 0 ) device.y = 0;
+                            circle.position = new Point(device.x*100+400, device.y*100+400);
+//                            circle.position = new Point(Math.random()*200, Math.random()*200);
+                            console.log(circle.position);
+                        }
+                    }
+                }
+                frameSkipper = 0;
+            }   else    {
+                frameSkipper++;
+            }
+
+//            firstDevice.point = new Point(x1, y1)
+//            path.position = firstDevice.point;
+            //  console.log(myPoint);
+        }
+    }
+
+    function getData() {
+        $.post(window.location.protocol + "//" + window.location.host
+                + '/service/api/getData', function (data) {
+            devices = JSON.parse(data);
+        });
+    }
+    ;
+
+    function sendData() {
+        $.post(window.location.protocol + "//" + window.location.host
+                + '/service/api/test', function (data) {
+            ;
+        });
+    }
+</script>
+
+<canvas id="myCanvas" resize></canvas>
+    <!--<button onclick="sendData()">Test</button>-->
+</body>
+</html>
