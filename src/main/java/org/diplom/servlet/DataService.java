@@ -95,6 +95,30 @@ public class DataService {
         }
     }
 
+    private Point checkPoint(Integer topLeftDistance, Integer topRightDistance, Integer bottomRightDistance, Integer bottomLeftDistance,
+                               Point bottomLeftPoint, Point bottomRightPoint, Point topLeftPoint, Point topRightPoint ){
+
+        Point point =  new Point();
+        if ((topLeftDistance.equals(0))) {
+            point.setX(topLeftPoint.getX());
+            point.setY(topLeftPoint.getY());
+            return point;
+        } else if (topRightDistance.equals(0)) {
+            point.setX(topRightPoint.getX());
+            point.setY(topRightPoint.getY());
+            return point;
+        } else if (bottomLeftDistance.equals(0)) {
+            point.setX(bottomLeftPoint.getX());
+            point.setY(bottomLeftPoint.getY());
+            return point;
+        } else if (bottomRightDistance.equals(0)) {
+            point.setX(bottomRightPoint.getX());
+            point.setY(bottomRightPoint.getY());
+            return point;
+        }
+        return null;
+    }
+
     /**
      * @param hotSpotRegistry
      * @return координаты телефона. Если по какой-то причине просчитать нельзя, то вернёт null.
@@ -149,23 +173,6 @@ public class DataService {
         Point bottomLeftPoint = controlPointList.get(SystemData.BOTTOM_LEFT_MAC).getCoordinates();
         Point bottomRightPoint = controlPointList.get(SystemData.BOTTOM_RIGHT_MAC).getCoordinates();
 
-        if ((topLeftDistance.equals(0))) {
-            point.setX(topLeftPoint.getX());
-            point.setY(topLeftPoint.getY());
-            return point;
-        } else if (topRightDistance.equals(0)) {
-            point.setX(topRightPoint.getX());
-            point.setY(topRightPoint.getY());
-            return point;
-        } else if (bottomLeftPoint.equals(0)) {
-            point.setX(bottomLeftPoint.getX());
-            point.setY(bottomLeftPoint.getY());
-            return point;
-        } else if (bottomRightPoint.equals(0)) {
-            point.setX(bottomRightPoint.getX());
-            point.setY(bottomRightPoint.getY());
-            return point;
-        }
 
 
         Point leftTriangle;
@@ -173,33 +180,39 @@ public class DataService {
         Point rightTriangle;
         Point bottomTriangle;
 
-        leftTriangle = calculatePoint(topLeftPoint, bottomLeftPoint, topLeftDistance, bottomLeftDistance);
-        rightTriangle = calculatePoint(topRightPoint, bottomRightPoint, topRightDistance, bottomRightDistance);
-        topTriangle = calculatePoint(topLeftPoint, topRightPoint, topLeftDistance, topRightDistance);
-        bottomTriangle = calculatePoint(bottomLeftPoint, bottomRightPoint, bottomLeftDistance, bottomRightDistance);
 
-        // метод просчитывает так, что для верхнего и нижнего треугольика координата Х будет в У,
-        // а координата У будет лежать в Х, поэтому меняем местами
+        if (checkPoint(topLeftDistance,topRightDistance,bottomRightDistance, bottomLeftDistance,
+                        bottomLeftPoint, bottomRightPoint, topLeftPoint, topRightPoint ) !=null) {
+            return point;
+        }else {
+            leftTriangle = calculatePoint(topLeftPoint, bottomLeftPoint, topLeftDistance, bottomLeftDistance);
+            rightTriangle = calculatePoint(topRightPoint, bottomRightPoint, topRightDistance, bottomRightDistance);
+            topTriangle = calculatePoint(topLeftPoint, topRightPoint, topLeftDistance, topRightDistance);
+            bottomTriangle = calculatePoint(bottomLeftPoint, bottomRightPoint, bottomLeftDistance, bottomRightDistance);
 
-        int buf;
-        if (topTriangle != null) {
-            buf = topTriangle.getX();
-            topTriangle.setX(topTriangle.getY());
-            topTriangle.setY(buf);
+            // метод просчитывает так, что для верхнего и нижнего треугольика координата Х будет в У,
+            // а координата У будет лежать в Х, поэтому меняем местами
+
+            int buf;
+            if (topTriangle != null) {
+                buf = topTriangle.getX();
+                topTriangle.setX(topTriangle.getY());
+                topTriangle.setY(buf);
+            }
+            if (bottomTriangle != null) {
+                buf = bottomTriangle.getX();
+                bottomTriangle.setX(bottomTriangle.getY());
+                bottomTriangle.setY(buf);
+            }
+
+            List<Point> points = new ArrayList<>();
+            points.add(leftTriangle);
+            points.add(rightTriangle);
+            points.add(topTriangle);
+            points.add(bottomTriangle);
+
+            return calculateFinalPoint(points);
         }
-        if (bottomTriangle != null) {
-            buf = bottomTriangle.getX();
-            bottomTriangle.setX(bottomTriangle.getY());
-            bottomTriangle.setY(buf);
-        }
-
-        List<Point> points = new ArrayList<>();
-        points.add(leftTriangle);
-        points.add(rightTriangle);
-        points.add(topTriangle);
-        points.add(bottomTriangle);
-
-        return calculateFinalPoint(points);
     }
 
 

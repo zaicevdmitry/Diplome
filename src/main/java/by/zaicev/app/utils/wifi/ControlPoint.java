@@ -51,6 +51,9 @@ public class ControlPoint {
         if (_level == null) {
             return 8;// максимальное расстояние в сетке
         }
+        if(_level == 99){
+            return 0;// минимальное расстояние  в сетке
+        }
 
         Integer result = null;
 
