@@ -29,11 +29,12 @@ public class SystemData {
 
         // расстояние от точки и уровень сигнала на этом расстоянии
         HashMap<Integer, Integer> distanceSignalLevelTopLeft = new HashMap<Integer, Integer>();
-        distanceSignalLevelTopLeft.put(0, 99);
-        distanceSignalLevelTopLeft.put(2, 96);
-        distanceSignalLevelTopLeft.put(4, 84);
-        distanceSignalLevelTopLeft.put(6, 78);
-        distanceSignalLevelTopLeft.put(8, 69);
+        distanceSignalLevelTopLeft.put(0, 999);
+        distanceSignalLevelTopLeft.put(2, 953);
+        distanceSignalLevelTopLeft.put(4, 872);
+        distanceSignalLevelTopLeft.put(6, 815);
+        distanceSignalLevelTopLeft.put(8, 740);
+        distanceSignalLevelTopLeft.put(8, 680);
 
         //1-я точка 60:a1:0a:f2:0c:b6 test 1
         ControlPoint topLeftPoint = new ControlPoint(TOP_LEFT_MAC, new Point(-4, 4), distanceSignalLevelTopLeft);
@@ -41,22 +42,24 @@ public class SystemData {
 
         // расстояние от точки и уровень сигнала на этом расстоянии
         HashMap<Integer, Integer> distanceSignalLevelTopRight =  new HashMap<Integer, Integer>();
-        distanceSignalLevelTopRight.put(0, 99);
-        distanceSignalLevelTopRight.put(2, 96);
-        distanceSignalLevelTopRight.put(4, 88);
-        distanceSignalLevelTopRight.put(6, 83);
-        distanceSignalLevelTopRight.put(8, 73);
+        distanceSignalLevelTopRight.put(0, 999);
+        distanceSignalLevelTopRight.put(2, 953);
+        distanceSignalLevelTopRight.put(4, 872);
+        distanceSignalLevelTopRight.put(6, 815);
+        distanceSignalLevelTopRight.put(8, 740);
+        distanceSignalLevelTopRight.put(8, 680);
 
         //2-я точка 78:1d:ba:27:7b:0b T2
         ControlPoint topRightPoint = new ControlPoint(TOP_RIGHT_MAC, new Point(4, 4), distanceSignalLevelTopRight);
         controlPointList.put(topRightPoint.getMac(), topRightPoint);
 
         HashMap<Integer, Integer> distanceSignalLevelBottomLeft = new HashMap<Integer, Integer>();
-        distanceSignalLevelBottomLeft.put(0, 99);
-        distanceSignalLevelBottomLeft.put(2, 96);
-        distanceSignalLevelBottomLeft.put(4, 88);
-        distanceSignalLevelBottomLeft.put(6, 76);
-        distanceSignalLevelBottomLeft.put(8, 68);
+        distanceSignalLevelBottomLeft.put(0, 999);
+        distanceSignalLevelBottomLeft.put(2, 953);
+        distanceSignalLevelBottomLeft.put(4, 872);
+        distanceSignalLevelBottomLeft.put(6, 815);
+        distanceSignalLevelBottomLeft.put(8, 740);
+        distanceSignalLevelBottomLeft.put(10, 680);
 
 
         //3-я точка 02:1a:11:f7:a7:bd HTC ONE
@@ -64,11 +67,12 @@ public class SystemData {
         controlPointList.put(bottomLeftPoint.getMac(), bottomLeftPoint);
 
         HashMap<Integer, Integer> distanceSignalLevelBottomRight = new HashMap<Integer, Integer>();
-        distanceSignalLevelBottomRight.put(0, 99);
-        distanceSignalLevelBottomRight.put(2, 92);
-        distanceSignalLevelBottomRight.put(4, 86);
-        distanceSignalLevelBottomRight.put(6, 73);
-        distanceSignalLevelBottomRight.put(8, 64);
+        distanceSignalLevelBottomRight.put(0, 999);
+        distanceSignalLevelBottomRight.put(2, 953);
+        distanceSignalLevelBottomRight.put(4, 872);
+        distanceSignalLevelBottomRight.put(6, 815);
+        distanceSignalLevelBottomRight.put(8, 740);
+        distanceSignalLevelBottomRight.put(8, 680);
 
         //4-я точка 78:1d:ba:27:7b:03 T
         ControlPoint bottomRightPoint = new ControlPoint(BOTTOM_RIGHT_MAC, new Point(4,-4), distanceSignalLevelBottomRight);

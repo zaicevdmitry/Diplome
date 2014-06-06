@@ -90,7 +90,7 @@ public class DataService {
                     phone.setX(phonePosition.getX());
                     phone.setY(phonePosition.getY());
 
-                return;
+
                 }
             }
         }
@@ -99,24 +99,25 @@ public class DataService {
     private Point checkPoint(Integer topLeftDistance, Integer topRightDistance, Integer bottomRightDistance, Integer bottomLeftDistance,
                                Point bottomLeftPoint, Point bottomRightPoint, Point topLeftPoint, Point topRightPoint ){
 
-        Point point =  new Point();
-        if ((topLeftDistance.equals(0))) {
-            point.setX(topLeftPoint.getX());
-            point.setY(topLeftPoint.getY());
-            return point;
-        } else if (topRightDistance.equals(0)) {
-            point.setX(topRightPoint.getX());
-            point.setY(topRightPoint.getY());
-            return point;
-        } else if (bottomLeftDistance.equals(0)) {
-            point.setX(bottomLeftPoint.getX());
-            point.setY(bottomLeftPoint.getY());
-            return point;
-        } else if (bottomRightDistance.equals(0)) {
-            point.setX(bottomRightPoint.getX());
-            point.setY(bottomRightPoint.getY());
-            return point;
-        }
+//        Point point =  new Point();
+//        if ((topLeftDistance.equals(0))) {
+//            point.setX(topLeftPoint.getX());
+//            point.setY(topLeftPoint.getY());
+//
+//        } else if (topRightDistance.equals(0)) {
+//            point.setX(topRightPoint.getX());
+//            point.setY(topRightPoint.getY());
+//
+//        } else if (bottomLeftDistance.equals(0)) {
+//            point.setX(bottomLeftPoint.getX());
+//            point.setY(bottomLeftPoint.getY());
+//
+//        } else if (bottomRightDistance.equals(0)) {
+//            point.setX(bottomRightPoint.getX());
+//            point.setY(bottomRightPoint.getY());
+//
+//        }
+//        return point;
         return null;
     }
 
@@ -337,6 +338,7 @@ public class DataService {
         int sumX = 0;
         int sumY = 0;
 
+
         for (Point point : points) {
             if (point != null) {
                 sumX += point.getX();
@@ -349,12 +351,14 @@ public class DataService {
         int x = sumX / pointCount;
         result.setX(x);
 
+
         // среднее по оси У
         int y = sumY / pointCount;
         result.setY(y);
 
         return result;
     }
+
 
 
     public static Map<String, Phone> getPhones() {

@@ -39,12 +39,21 @@
                                 center: view.center,
                                 radius: 30,
                                 fillColor: 'blue'
+
                             });
+
                             console.log("Device " + deviceId + " created.");
                         } else {
-                            if(device.x < 0 ) device.x = 0;
-                            if(device.y < 0 ) device.y = 0;
-                            circle.position = new Point(device.x*100+400, device.y*100+400);
+                           // console.log(device.x*100+1000);
+                            //console.log(device.y*100+1000);
+
+                            console.log(device.x);
+                            console.log(device.y);
+//                            if(device.x < 0 ) device.x = 0;
+//                            if(device.y < 0 ) device.y = 0;
+
+                            circle.position = new Point(device.x*100+400, Math.abs(device.y*100-400));
+
 //                            circle.position = new Point(Math.random()*200, Math.random()*200);
                             console.log(circle.position);
                         }
@@ -77,7 +86,7 @@
     }
 </script>
 
-<canvas id="myCanvas" resize></canvas>
+<canvas id="myCanvas" width="800" height="800"></canvas>
     <!--<button onclick="sendData()">Test</button>-->
 </body>
 </html>
