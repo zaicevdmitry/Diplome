@@ -90,6 +90,7 @@ public class DataService {
                     phone.setX(phonePosition.getX());
                     phone.setY(phonePosition.getY());
 
+                return;
                 }
             }
         }
@@ -183,7 +184,10 @@ public class DataService {
 
         if (checkPoint(topLeftDistance,topRightDistance,bottomRightDistance, bottomLeftDistance,
                         bottomLeftPoint, bottomRightPoint, topLeftPoint, topRightPoint ) !=null) {
-            return point;
+            point = checkPoint(topLeftDistance,topRightDistance,bottomRightDistance, bottomLeftDistance,
+                    bottomLeftPoint, bottomRightPoint, topLeftPoint, topRightPoint);
+           return point;
+
         }else {
             leftTriangle = calculatePoint(topLeftPoint, bottomLeftPoint, topLeftDistance, bottomLeftDistance);
             rightTriangle = calculatePoint(topRightPoint, bottomRightPoint, topRightDistance, bottomRightDistance);
