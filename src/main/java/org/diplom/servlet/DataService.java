@@ -99,26 +99,38 @@ public class DataService {
     private Point checkPoint(Integer topLeftDistance, Integer topRightDistance, Integer bottomRightDistance, Integer bottomLeftDistance,
                                Point bottomLeftPoint, Point bottomRightPoint, Point topLeftPoint, Point topRightPoint ){
 
-//        Point point =  new Point();
-//        if ((topLeftDistance.equals(0))) {
-//            point.setX(topLeftPoint.getX());
-//            point.setY(topLeftPoint.getY());
-//
-//        } else if (topRightDistance.equals(0)) {
-//            point.setX(topRightPoint.getX());
-//            point.setY(topRightPoint.getY());
-//
-//        } else if (bottomLeftDistance.equals(0)) {
-//            point.setX(bottomLeftPoint.getX());
-//            point.setY(bottomLeftPoint.getY());
-//
-//        } else if (bottomRightDistance.equals(0)) {
-//            point.setX(bottomRightPoint.getX());
-//            point.setY(bottomRightPoint.getY());
-//
-//        }
-//        return point;
-        return null;
+        Point point =  null;
+        if ((topLeftDistance.equals(0))) {
+            point.setX(topLeftPoint.getX());
+            point.setY(topLeftPoint.getY());
+
+        } else if (topRightDistance.equals(0)) {
+            point.setX(topRightPoint.getX());
+            point.setY(topRightPoint.getY());
+
+        } else if (bottomLeftDistance.equals(0)) {
+            point.setX(bottomLeftPoint.getX());
+            point.setY(bottomLeftPoint.getY());
+
+        } else if (bottomRightDistance.equals(0)) {
+            point.setX(bottomRightPoint.getX());
+            point.setY(bottomRightPoint.getY());
+
+        }
+        return point;
+
+    }
+
+    public Point checkDistance(Integer leftTopDist, Integer rightTopDist, Integer bottomRightDist,
+                                 Integer bottomLeftDist){
+        Point point = null;
+
+
+        if(leftTopDist.equals(0) && rightTopDist.equals(0) && bottomLeftDist.equals(0) && bottomRightDist.equals(0)){
+            point.setX(0);
+            point.setY(0);
+        }
+        return point;
     }
 
     /**
@@ -175,6 +187,27 @@ public class DataService {
         Point bottomLeftPoint = controlPointList.get(SystemData.BOTTOM_LEFT_MAC).getCoordinates();
         Point bottomRightPoint = controlPointList.get(SystemData.BOTTOM_RIGHT_MAC).getCoordinates();
 
+         //TODO -  дописать проверки для 0 расстояний если от точки приходит (999)
+         if (checkDistance(topLeftDistance, topRightDistance,bottomRightDistance,bottomLeftDistance) !=null){
+             point = checkDistance(topLeftDistance, topRightDistance,bottomRightDistance,bottomLeftDistance);
+             return  point;
+         }else if(topLeftDistance.equals(0)&&topRightDistance.equals(0)){
+             point.setX(topLeftPoint.getX() + topRightPoint.getX());
+             point.setY(Math.abs(topLeftPoint.getY() + topRightPoint.getY())/2);        //модуль
+             return point;
+         }else if(topRightDistance.equals(0) && bottomRightDistance.equals(0)){
+             point.setX(Math.abs(topRightPoint.getX() + bottomRightPoint.getX())/2);   //модуль
+             point.setY(topRightPoint.getY() + bottomRightPoint.getY());
+             return point;
+         }else if(bottomRightDistance.equals(0) && bottomLeftDistance.equals(0)){
+             point.setX(bottomRightPoint.getX() - bottomLeftPoint.getX());
+             point.setY(Math.abs((bottomRightPoint.getY()+bottomLeftPoint.getY()))/2);      //модуль
+             return point;
+         }else if(bottomLeftDistance.equals(0) && topLeftDistance.equals(0)){
+             point.setX(Math.abs((bottomLeftPoint.getX() - topLeftPoint.getY()))/2);     //модуль
+             point.setY(bottomLeftPoint.getY() + topLeftPoint.getY());
+             return  point;
+         }
 
 
         Point leftTriangle;

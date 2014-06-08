@@ -34,7 +34,6 @@ public class SystemData {
         distanceSignalLevelTopLeft.put(4, 872);
         distanceSignalLevelTopLeft.put(6, 815);
         distanceSignalLevelTopLeft.put(8, 740);
-        distanceSignalLevelTopLeft.put(8, 680);
 
         //1-я точка 60:a1:0a:f2:0c:b6 test 1
         ControlPoint topLeftPoint = new ControlPoint(TOP_LEFT_MAC, new Point(-4, 4), distanceSignalLevelTopLeft);
@@ -47,7 +46,6 @@ public class SystemData {
         distanceSignalLevelTopRight.put(4, 872);
         distanceSignalLevelTopRight.put(6, 815);
         distanceSignalLevelTopRight.put(8, 740);
-        distanceSignalLevelTopRight.put(8, 680);
 
         //2-я точка 78:1d:ba:27:7b:0b T2
         ControlPoint topRightPoint = new ControlPoint(TOP_RIGHT_MAC, new Point(4, 4), distanceSignalLevelTopRight);
@@ -59,7 +57,6 @@ public class SystemData {
         distanceSignalLevelBottomLeft.put(4, 872);
         distanceSignalLevelBottomLeft.put(6, 815);
         distanceSignalLevelBottomLeft.put(8, 740);
-        distanceSignalLevelBottomLeft.put(10, 680);
 
 
         //3-я точка 02:1a:11:f7:a7:bd HTC ONE
@@ -72,7 +69,6 @@ public class SystemData {
         distanceSignalLevelBottomRight.put(4, 872);
         distanceSignalLevelBottomRight.put(6, 815);
         distanceSignalLevelBottomRight.put(8, 740);
-        distanceSignalLevelBottomRight.put(8, 680);
 
         //4-я точка 78:1d:ba:27:7b:03 T
         ControlPoint bottomRightPoint = new ControlPoint(BOTTOM_RIGHT_MAC, new Point(4,-4), distanceSignalLevelBottomRight);
