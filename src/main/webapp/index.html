@@ -46,7 +46,27 @@
                         } else {
                             console.log(device.x);
                             console.log(device.y);
-                            circle.position = new Point(device.x*100+400, Math.abs(device.y*100-400));
+                            //границы для углов
+                            if(device.x == 4 && device.y == -4){
+                                circle.position = new Point(device.x*100+340, Math.abs(device.y*100-340));
+                            }else if(device.x == -4 && device.y == -4){
+
+                                circle.position = new Point(device.x*100+440, Math.abs(device.y*100-340));
+                            }else if(device.x == 4 && device.y == 4){
+                                circle.position = new Point(device.x*100+340, Math.abs(device.y*100-350));
+                            }else if(device.x == -4 && device.y == 4){
+                                //TODO допроверить
+                                circle.position = new Point(device.x*100+320, Math.abs(device.y*100-420));
+                            }//границы для сторон
+                            else if(device.x == 4 && device.y ==0){
+                                circle.position = new Point(device.x*100+340, Math.abs(device.y*100-400));
+                            }else if(device.x == 0 && device.y == -4){
+                                circle.position = new Point(device.x*100+400, Math.abs(device.y*100-340));
+                            }else if(device.x == -4 && device.y == 0){
+                                circle.position = new Point(device.x*100+400, Math.abs(device.y*100-340));
+                            }else if(device.x == 0 && device.y == 4){
+                                circle.position = new Point(device.x*100+400, Math.abs(device.y*100-360));
+                            }
                             console.log(circle.position);
                         }
                     }
