@@ -99,7 +99,7 @@ public class DataService {
     private Point checkPoint(Integer topLeftDistance, Integer topRightDistance, Integer bottomRightDistance, Integer bottomLeftDistance,
                                Point bottomLeftPoint, Point bottomRightPoint, Point topLeftPoint, Point topRightPoint ){
 
-        Point point =  null;
+        Point point = new Point();
         if ((topLeftDistance.equals(0))) {
             point.setX(topLeftPoint.getX());
             point.setY(topLeftPoint.getY());
@@ -123,7 +123,7 @@ public class DataService {
 
     public Point checkDistance(Integer leftTopDist, Integer rightTopDist, Integer bottomRightDist,
                                  Integer bottomLeftDist){
-        Point point = null;
+        Point point = new Point();
 
 
         if(leftTopDist.equals(0) && rightTopDist.equals(0) && bottomLeftDist.equals(0) && bottomRightDist.equals(0)){
@@ -188,7 +188,8 @@ public class DataService {
         Point bottomRightPoint = controlPointList.get(SystemData.BOTTOM_RIGHT_MAC).getCoordinates();
 
          //TODO -  дописать проверки для 0 расстояний если от точки приходит (999)
-         if (checkDistance(topLeftDistance, topRightDistance,bottomRightDistance,bottomLeftDistance) !=null){
+         if (topLeftDistance.equals(0) && topRightDistance.equals(0) && bottomLeftDistance.equals(0)
+                 && bottomRightDistance.equals(0)){
              point = checkDistance(topLeftDistance, topRightDistance,bottomRightDistance,bottomLeftDistance);
              return  point;
          }else if(topLeftDistance.equals(0)&&topRightDistance.equals(0)){
@@ -200,7 +201,7 @@ public class DataService {
              point.setY(topRightPoint.getY() + bottomRightPoint.getY());
              return point;
          }else if(bottomRightDistance.equals(0) && bottomLeftDistance.equals(0)){
-             point.setX(bottomRightPoint.getX() - bottomLeftPoint.getX());
+             point.setX(bottomRightPoint.getX() + bottomLeftPoint.getX());
              point.setY(Math.abs((bottomRightPoint.getY()+bottomLeftPoint.getY()))/2);      //модуль
              return point;
          }else if(bottomLeftDistance.equals(0) && topLeftDistance.equals(0)){
@@ -216,8 +217,8 @@ public class DataService {
         Point bottomTriangle;
 
 
-        if (checkPoint(topLeftDistance,topRightDistance,bottomRightDistance, bottomLeftDistance,
-                        bottomLeftPoint, bottomRightPoint, topLeftPoint, topRightPoint ) !=null) {
+        if (topLeftDistance.equals(0) || topRightDistance.equals(0) || bottomLeftDistance.equals(0)
+                || bottomRightDistance.equals(0)) {
             point = checkPoint(topLeftDistance,topRightDistance,bottomRightDistance, bottomLeftDistance,
                     bottomLeftPoint, bottomRightPoint, topLeftPoint, topRightPoint);
            return point;
